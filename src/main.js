@@ -17,12 +17,12 @@ bot.use(session())
 
 bot.command('new', async (ctx) => {
     ctx.session = INITIAL_SESSION
-    await ctx.reply('Жду ваше голосовое или текстовое сообщения')
+    await ctx.reply('Жду ваше голосовое или текстовое сообщение')
 })
 
 bot.command('start', async (ctx) => {
     ctx.session = INITIAL_SESSION
-    await ctx.reply('Жду ваше голосовое или текстовое сообщения')
+    await ctx.reply('Жду ваше голосовое или текстовое сообщение')
 })
 
 bot.on(message('voice'), async ctx => {
