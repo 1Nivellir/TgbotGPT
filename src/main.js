@@ -17,18 +17,18 @@ bot.use(session())
 
 bot.command('new', async (ctx) => {
     ctx.session = INITIAL_SESSION
-    await ctx.reply('Жду твое голосовое или текстовое сообщения')
+    await ctx.reply('Жду ваше голосовое или текстовое сообщения')
 })
 
 bot.command('start', async (ctx) => {
     ctx.session = INITIAL_SESSION
-    await ctx.reply('Жду твое голосовое или текстовое сообщения')
+    await ctx.reply('Жду ваше голосовое или текстовое сообщения')
 })
 
 bot.on(message('voice'), async ctx => {
     ctx.session ??= INITIAL_SESSION
     try {
-    await ctx.reply(code('Понял тебя, подожди немного'))
+    await ctx.reply(code('Отправил ваш запрос на сервер, ожидаем ответа...'))
     const link = await ctx.telegram.getFileLink(ctx.message.voice.file_id)
     const userId = String(ctx.message.from.id)
     const oggPath = await ogg.create(link.href, userId)
@@ -51,7 +51,7 @@ bot.on(message('voice'), async ctx => {
 bot.on(message('text'), async ctx => {
     ctx.session ??= INITIAL_SESSION
     try {
-    await ctx.reply(code('Понял тебя, подожди немного'))
+    await ctx.reply(code('Отправил ваш запрос на сервер, ожидаем ответа...'))
     ctx.session.messages.push({role: openai.roles.USER, content: ctx.message.text})
     const response = await openai.chat( ctx.session.messages)
 
